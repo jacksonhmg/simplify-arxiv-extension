@@ -1,6 +1,6 @@
 // content.js
 chrome.runtime.onMessage.addListener(function (message) {
-    print('listener for updateContent')
+    console.log('listener for updateContent')
     if (message.action === 'updateContent') {
         let metaDivs = document.querySelectorAll('.meta');
         metaDivs.forEach(div => {
@@ -15,11 +15,11 @@ chrome.runtime.onMessage.addListener(function (message) {
 });
 
 function sendContentForSimplification() {
-    print('sendContentForSimplification')
+    console.log('sendContentForSimplification')
     let metaDivs = document.querySelectorAll('.meta');
-    metaDivs.forEach(div => {
-        let titleDiv = div.querySelector('.list-title.mathjax');
-        let descriptionP = div.querySelector('p.mathjax');
+    metaDivs.forEach(metaDiv => {
+        let titleDiv = metaDiv.querySelector('.list-title.mathjax');
+        let descriptionP = metaDiv.querySelector('p.mathjax');
         if (titleDiv && descriptionP) {
             chrome.runtime.sendMessage({
                 type: "simplifyContent",

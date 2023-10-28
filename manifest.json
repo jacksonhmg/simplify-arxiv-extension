@@ -1,6 +1,6 @@
 {
-  "name": "Site Tracker",
-  "description": "Enter API key, open a YT vid, then ask any question!",
+  "name": "Arxiv Simplifier",
+  "description": "Enter API key, open an Arxiv list page and voila!",
   "version": "1.0",
   "manifest_version": 3,
   "icons": {

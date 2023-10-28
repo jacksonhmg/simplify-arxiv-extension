@@ -23,9 +23,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 });
 
 async function simplifyContent(title, description) {
-    // Call GPT (OpenAI's API) to get simplified content
-    // Make sure you have the API key and necessary setup to call the OpenAI API
-    // This is a placeholder for the actual API call
     let simplifiedTitle = await callGPT(title);
     let simplifiedDescription = await callGPT(description);
 

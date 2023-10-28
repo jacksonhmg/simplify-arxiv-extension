@@ -36,8 +36,44 @@ async function simplifyContent(title, description) {
 }
 
 async function callGPT(content) {
-    // Placeholder for GPT API call
-    // You need to implement the actual API call here
-    // Return the simplified content as a string
-    return content; // This should be replaced with the actual dumbed-down version from GPT
+    const OPENAI_API_KEY = await getKey();
+    const data = {
+    model: "gpt-3.5-turbo",
+    messages: [
+        {
+        role: "system",
+        content: "You are a helpful assistant. You are helping a student understand a concept. You will be fed a description of a concept. You need to simplify it. Only return a simplified version of the description. Use easy to understand words. Only return a simplified version of the description."
+        },
+        {
+        role: "user",
+        content: {content}
+        }
+    ]
+    };
+
+    return fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify(data)
+    })
+    .then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+    })
+    .then(data => {
+    if (data.choices && data.choices.length > 0) {
+        return data.choices[0].content;
+    } else {
+        throw new Error('No content found in the response');
+    }
+    })
+    .catch((error) => {
+    console.error('Error:', error);
+    return null;
+    });
 }

@@ -1,4 +1,15 @@
 // background.js
+const getKey = () => {
+    return new Promise((resolve, reject) => {
+      chrome.storage.local.get(['openai-key'], (result) => {
+        if (result['openai-key']) {
+          const decodedKey = atob(result['openai-key']);
+          resolve(decodedKey);
+        }
+      });
+    });
+};
+
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.type === "simplifyContent") {
         simplifyContent(message.title, message.description).then(simplified => {

@@ -16,6 +16,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         simplifyContent(message.title, message.description).then(simplified => {
             chrome.tabs.sendMessage(sender.tab.id, {
                 action: 'updateContent',
+                divId: message.divId, // Include the div ID in the message sent back
                 title: simplified.title,
                 description: simplified.description
             });

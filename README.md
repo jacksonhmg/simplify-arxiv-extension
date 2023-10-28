@@ -23,6 +23,6 @@ Once you've clicked it, it'll ask for an OpenAI api key, grab yours from https:/
 
 Enter the key
 
-Load up a new arxiv/list/ page
+Load up a new arxiv/list/ page e.g. https://arxiv.org/list/quant-ph/new
 
 Voila!

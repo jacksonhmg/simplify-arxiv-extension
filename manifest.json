@@ -1,0 +1,26 @@
+{
+  "name": "Site Tracker",
+  "description": "Enter API key, open a YT vid, then ask any question!",
+  "version": "1.0",
+  "manifest_version": 3,
+  "icons": {
+    "48": "assets/48.png",
+    "72": "assets/72.png",
+    "96": "assets/96.png",
+    "144": "assets/144.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Ask YT vid"
+  },
+  "permissions": ["contextMenus", "tabs", "storage", "activeTab"]
+}

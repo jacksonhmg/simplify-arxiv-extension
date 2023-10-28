@@ -1,5 +1,6 @@
 // content.js
 chrome.runtime.onMessage.addListener(function (message) {
+    print('listener for updateContent')
     if (message.action === 'updateContent') {
         let metaDivs = document.querySelectorAll('.meta');
         metaDivs.forEach(div => {
@@ -14,6 +15,7 @@ chrome.runtime.onMessage.addListener(function (message) {
 });
 
 function sendContentForSimplification() {
+    print('sendContentForSimplification')
     let metaDivs = document.querySelectorAll('.meta');
     metaDivs.forEach(div => {
         let titleDiv = div.querySelector('.list-title.mathjax');

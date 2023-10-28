@@ -11,6 +11,7 @@ const getKey = () => {
 };
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    print('listener for simplifyContent')
     if (message.type === "simplifyContent") {
         simplifyContent(message.title, message.description).then(simplified => {
             chrome.tabs.sendMessage(sender.tab.id, {
@@ -23,6 +24,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 });
 
 async function simplifyContent(title, description) {
+    print('simplifyContent')
     let simplifiedTitle = await callGPT(title);
     let simplifiedDescription = await callGPT(description);
 
@@ -33,6 +35,7 @@ async function simplifyContent(title, description) {
 }
 
 async function callGPT(content) {
+    print('callGPT')
     const OPENAI_API_KEY = await getKey();
     const data = {
     model: "gpt-3.5-turbo",
